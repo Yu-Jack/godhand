@@ -1,0 +1,38 @@
+<style>
+.image-size {
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.home-card {
+    width: 100% !important;
+    padding: 10px !important;
+}
+</style>
+<div class="ui three column grid doubling stackable" style="margin-top:15px;">
+    
+    <div ng-repeat="image in images" class="column">
+        <div class="ui card home-card link ">
+            <div class="content">
+                <img class="ui avatar image" ng-src="{{ image.authavatar }}"> {{ image.auth }}
+            </div>
+            <div class="image">
+                <a ui-sref="image({ imageId : image.id })">
+                    <div style="background-image:url({{ image.imageurl }});" class="image-size"></div>
+                </a>
+            </div>
+            <div class="content">
+                <span class="right floated">
+                    <i class="heart like icon" ng-class="{'empty': !image.isLiked}" ng-click="like(image.id)"></i> {{ image.favorite }} likes
+                </span>
+                <i class=" comment icon"></i> {{ image.comments }} comments
+                <br>
+
+            </div>
+            <div class="extra">
+                <i class="fa fa-2x fa-eye icon"></i>{{ image.views }}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<style>
+.card {
+    display: inline-block;
+}
+.image-size {
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.ui.card {
+    width: 90%;
+}
+</style>
+
+<div class="ui doubling stackable grid" style="margin-top:30px;">
+    <div class="four wide column" >
+        <div class="ui doubling stackable card centered" style="word-break:break-all;">
+            <div class="image">
+                <img ng-src="{{user.avatar}}">
+            </div>
+            <div class="content">
+                <span class="header">{{ user.name }} <a ui-sref="profile_edit">[修改資料]</a></span>
+                <div class="description">
+                    {{ user.description }}
+                </div>
+            </div>
+            <div class="extra content">
+                <a ui-sref="followed">
+                    <i class="user icon"></i> {{ user.followed }} followed
+                </a>
+                <br>
+                <a ui-sref="following">
+                    <i class="user icon"></i> {{ user.followed }} following
+                </a>
+                <a ui-sref="image_upload" class="ui button right floated">上傳作品</a>
+            </div>
+        </div>
+    </div>
+    <div class="twelve wide column">
+        <div class="ui three column grid doubling stackable">
+            <div ng-repeat="image in images" class="column">
+                <div class="ui card centered link ">
+                    <div class="image">
+                        <a ui-sref="image({ imageId : image.id })">
+                            <div style="background-image:url({{ image.image_url }});" class="image-size"></div>
+                        </a>
+                    </div>
+                    <div class="content">
+                        <span class="right floated">
+                    <i class=" heart outline like icon"></i>{{ image.count_favorite }} likes
+                </span>
+                        <i class=" comment icon"></i> {{ image.count_comments }} comments
+                        <br>
+
+                    </div>
+                    <div class="extra">
+                        <i class="fa fa-2x fa-eye icon"></i>{{ image.count_views }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

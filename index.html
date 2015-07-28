@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html ng-app="godhand">
+
+<head>
+    <meta charset="UTF-8">
+    <title>God Hand</title>
+    <link href="vendor/semantic/dist/semantic.css" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="vendor/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet">
+    <link href="vendor/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet">
+    <link href="vendor/angular-loading-bar/build/loading-bar.css" rel="stylesheet">
+
+    <style>
+    img {
+        width: 100%;
+        vertical-align: top;
+    }
+    html,
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+    .fixed-bar {
+        position: fixed;
+        width: 100%;
+        z-index: 10;
+        background-color: #FFF;
+    }
+    </style>
+</head>
+
+<body>
+
+
+
+    <side-bar></side-bar>
+    <div class="pusher">
+        <div ng-controller="MenuCtrl" class="fixed-bar">
+            <a ng-click="menu()">
+                <i class="sidebar icon" style="font-size:40px;padding:15px 0px;cursor:pointer;color:black;z-index:2"></i>
+            </a>
+        </div>
+        <br>
+        <div ui-view></div>
+    </div>
+
+    <login-modal></login-modal>
+    <register-modal></register-modal>
+
+    <!-- Angular -->
+    <script src="vendor/angular/angular.min.js"></script>
+    <!-- UI-Router -->
+    <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- ngCookies -->
+    <script src="vendor/angular-cookies/angular-cookies.js"></script>
+    <script src="vendor/angular-loading-bar/build/loading-bar.min.js"></script>
+    
+    <script src="vendor/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/semantic/dist/semantic.js"></script>
+    <script src="vendor/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+    <script src="vendor/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+    <script src="vendor/jquery-file-upload/js/jquery.fileupload.js"></script>
+
+
+    <script src="app/app-module.js"></script>
+    <script src="app/app-router.js"></script>
+
+    <script src="app/shared/Auth/authDirective.js"></script>
+    <script src="app/shared/sidebar/sidebarDirective.js"></script>
+
+    <script src="app/components/home/HomeCtrl.js"></script>
+    <script src="app/components/imagedetail/ImageCtrl.js"></script>
+    <script src="app/components/profile/ProfileCtrl.js"></script>
+    <script src="app/components/followed/FollowedCtrl.js"></script>
+    <script src="app/components/following/FollowingCtrl.js"></script>
+    <script src="app/components/favorite/FavoriteCtrl.js"></script>
+    <script src="app/components/activity/ActivityCtrl.js"></script>
+    <script src="app/shared/Auth/authCtrl.js"></script>
+
+</body>
+
+</html>

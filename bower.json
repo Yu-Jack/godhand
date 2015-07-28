@@ -1,0 +1,26 @@
+{
+  "name": "godhand",
+  "version": "1.0.0",
+  "description": "Share image platform",
+  "authors": [
+    "godhand"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-file-upload": "~9.10.5",
+    "angular-loading-bar": "~0.8.0",
+    "angularjs": "~1.4.3",
+    "angular-ui-router": "~0.2.15",
+    "angular-cookies": "~1.4.3",
+    "semantic": "~2.0.7",
+    "font-awesome": "~4.3.0"
+  }
+}

@@ -1,0 +1,46 @@
+<div class="ui grid double stackable" style="margin-top:15px;">
+    <div class="ten wide column centered">
+        <div class="ui segment">
+            <img ng-src="{{ image.url }}" alt="">
+
+            <!-- Image Information -->
+            <div class="ui message">
+                <div class="header">
+                    {{ image.title }}
+                </div>
+                <p>{{ image.content }}</p>
+            </div>
+
+            <!-- User Comment -->
+            <div class="ui comments">
+                <h3 class="ui dividing header">Comments</h3>
+
+                <div class="comment" ng-repeat="comment in comments">
+                    <!-- layer 0 comment -->
+                    <a class="avatar" >
+                        <img ng-src="{{ comment.avatar }}">
+                    </a>
+                    <div class="content">
+                        <a class="author"> {{ comment.author }}</a>
+                        <div class="metadata">
+                            <span class="date">{{ comment.date }}</span>
+                        </div>
+                        <div class="text">
+                            {{ comment.text }}
+                        </div>
+                    </div>
+                </div>
+
+                <form class="ui reply form"  ng-if="logged">
+                    <div class="field">
+                        <textarea></textarea>
+                    </div>
+                    <div class="ui blue labeled submit icon button" ng-click="Reply(image.id)">
+                        <i class="icon edit"></i> Add Reply
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

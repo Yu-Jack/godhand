@@ -1,0 +1,24 @@
+<div class="ui grid double stackable centered" style="margin-top:30px;padding:5px;">
+    <div class="four wide column">
+        <img id="target" ng-src="{{avatar}}" alt="">
+    </div>
+    <div class="twelve wide column">
+        <form class="ui form" id="image_form">
+            <div class="field">
+                <span class="ui inverted green button active fileinput-button">
+                    <span>Change Picture</span>
+                <input id="fileupload" type="file" name="image">
+                </span>
+            </div>
+            <div class="field">
+                <label>名字</label>
+                <input type="text" name="name" ng-model="name">
+            </div>
+            <div class="field">
+                <label>簡短介紹</label>
+                <textarea name="description" ng-model="description"></textarea>
+            </div>
+            <button class="ui button" type="submit" ng-click="submit()">Submit</button>
+        </form>
+    </div>
+</div>

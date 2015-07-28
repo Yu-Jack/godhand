@@ -1,0 +1,27 @@
+<div class="ui grid double stackable centered" style="margin-top:30px;padding:5px;">
+    <div class="twelve wide column">
+        <form class="ui form" id="image_form">
+            <div class="field">
+                <span class="ui inverted green button active fileinput-button">
+                    <span>Add Image...</span>
+                <input id="fileupload" type="file" name="image">
+                </span>
+                <!-- <div id="progress" class="ui inverted  success progress active">
+                    <div class="bar" style="transition-duration: 300ms; width:0%;">
+                    	<div class="progress"></div>
+                    </div>
+                </div> -->
+                <img id="target" src="" alt="">
+            </div>
+            <div class="field">
+                <label>標題</label>
+                <input type="text" name="title" ng-model="title" placeholder="Title ... ">
+            </div>
+            <div class="field">
+                <label>內容</label>
+                <textarea name="content" ng-model="content"></textarea>
+            </div>
+            <button class="ui button" type="submit" ng-click="submit()">Submit</button>
+        </form>
+    </div>
+</div>
