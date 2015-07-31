@@ -4,13 +4,34 @@ godhandControllers.controller('ProfileCtrl', ['$rootScope', '$scope', '$http', '
             $('.left.sidebar').sidebar('toggle');
         }
 
+        $scope.logged = $rootScope.logged;
         $scope.images = [];
         var req = {
-            method: 'get',
-            url: $rootScope.server + 'user_profile/' + $stateParams.userId
+            method: 'post',
+            url: $rootScope.server + 'user_profile',
+            data: $.param({
+                targetId: $stateParams.userId,
+                userId: $rootScope.user
+            })
         };
         $http(req).success(function(data) {
+
+            if (data.isFollow) {
+                $scope.isFollow = true;
+                $scope.follow = '取消追蹤';
+            } else {
+                $scope.isFollow = false;
+                $scope.follow = '追蹤';
+            }
+
             data.user.avatar = $rootScope.server + data.user.avatar;
+
+            if ($stateParams.userId == $rootScope.user) {
+                $scope.self = true;
+            } else {
+                $scope.self = false;
+            }
+
             $scope.user = data.user;
 
             data.user.image.forEach(function(value, index) {
@@ -18,6 +39,30 @@ godhandControllers.controller('ProfileCtrl', ['$rootScope', '$scope', '$http', '
                 $scope.images.push(value);
             });
         });
+
+        $scope.Follow = function(id) {
+            var req = {
+                method: 'post',
+                url: $rootScope.server + 'follow',
+                data: $.param({
+                    userId: $rootScope.user,
+                    followId: id
+                })
+            };
+            $http(req).success(function(data) {
+                data.target.avatar = $rootScope.server + data.target.avatar;
+                $scope.user = data.target;
+                if (data.success) {
+                    if (data.isFollow) {
+                        $scope.isFollow = true;
+                        $scope.follow = '取消追蹤';
+                    } else {
+                        $scope.isFollow = false;
+                        $scope.follow = '追蹤';
+                    }
+                }
+            });
+        }
     }
 ]);
 godhandControllers.controller('ImageUploadCtrl', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
@@ -104,11 +149,14 @@ godhandControllers.controller('ProfileEditCtrl', ['$rootScope', '$scope', '$http
             }
 
             $scope.submit = function() {
+                image_name = (typeof $('#fileupload').prop('files')[0] === 'undefined' ? "" : $('#fileupload').prop('files')[0].name);
+
                 var req = {
                     method: 'post',
                     url: $rootScope.server + 'profile_edit',
                     data: $.param({
                         image: $('#target').attr('src'),
+                        image_name: image_name,
                         name: $scope.name,
                         description: $scope.description,
                         user: $rootScope.user
@@ -117,11 +165,11 @@ godhandControllers.controller('ProfileEditCtrl', ['$rootScope', '$scope', '$http
                 $http(req).success(function(data) {
                     if (data.success) {
                         // $state.go('home',{},{reload:true});
-                        // $state.go('profile', {
-                        //     name: data.userId
-                        // }, {
-                        //     reload: true
-                        // });
+                        $state.go('profile', {
+                            userId: $rootScope.user
+                        }, {
+                            reload: true
+                        });
                     }
                 });
             }

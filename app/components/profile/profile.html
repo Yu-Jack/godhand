@@ -20,7 +20,8 @@
                 <img ng-src="{{user.avatar}}">
             </div>
             <div class="content">
-                <span class="header">{{ user.name }} <a ui-sref="profile_edit">[修改資料]</a></span>
+                <span class="header">{{ user.name }} <a ui-sref="profile_edit" ng-if="self">[修改資料]</a></span>
+                <a class="ui button right floated" ng-if="!self && logged == true" ng-class="{red:isFollow}"ng-click="Follow(user.id)">{{ follow }}</a>
                 <div class="description">
                     {{ user.description }}
                 </div>
@@ -31,9 +32,9 @@
                 </a>
                 <br>
                 <a ui-sref="following">
-                    <i class="user icon"></i> {{ user.followed }} following
+                    <i class="user icon"></i> {{ user.following }} following
                 </a>
-                <a ui-sref="image_upload" class="ui button right floated">上傳作品</a>
+                <a ui-sref="image_upload" class="ui button right floated" ng-if="self">上傳作品</a>
             </div>
         </div>
     </div>

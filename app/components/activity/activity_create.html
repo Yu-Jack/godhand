@@ -1,0 +1,35 @@
+<div class="ui grid double stackable centered" style="margin-top:30px;padding:5px;">
+    <div class="twelve wide column">
+        <form class="ui form" id="image_form">
+            <div class="field">
+                <span class="ui inverted green button active fileinput-button">
+                    <span>Add Activity Image</span>
+                <input id="fileupload" type="file" name="image">
+                </span>
+                <img src="" alt="" id="target">
+            </div>
+            <div class="field">
+                <label>活動名稱</label>
+                <input type="text" name="title" ng-model="title">
+            </div>
+            <div class="field">
+                <label>活動內容說明</label>
+                <textarea name="description" ng-model="description"></textarea>
+            </div>
+            <div class="field">
+                <label>活動地點</label>
+                <input type="text" name="position" ng-model="position">
+            </div>
+            <div class="field">
+                <label>開始時間</label>
+                <input type="text" id="start" name="start">
+            </div>
+            <div class="field">
+                <label>結束時間</label>
+                <input type="text" id="end" name="end">
+            </div>
+            <button class="ui submit button" type="submit">Submit</button>
+            <div class="ui error message"></div>
+        </form>
+    </div>
+</div>

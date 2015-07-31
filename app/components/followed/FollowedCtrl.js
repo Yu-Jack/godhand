@@ -5,10 +5,10 @@ godhandControllers.controller('FollowedCtrl', ['$rootScope', '$scope', '$http',
         }
         $scope.people = [];
         $http.get($rootScope.server + 'followed/' + $rootScope.user).success(function(data){
-            $scope.poeple = data.followeds;
             data.followeds.forEach(function(value, index){
-                $scope.people.push({avatar:$rootScope.server + value.avatar, name:value.name});
+                value.avatar = $rootScope.server + value.avatar;
             });
+            $scope.people = data.followeds;
         });
     }    
 ]);

@@ -1,0 +1,24 @@
+<div class="ui grid double stackable" style="margin-top:15px;">
+    <div class="ten wide column centered">
+        <div class="ui  piled segment">
+            <img ng-src="{{ activity.image_url }}">
+            <h2 class="ui header">{{ activity.title }}</h2>
+            <div class="ui  right aligned segment">
+                <button class="ui blue button" ng-class="{red:isAttend}"ng-click="attend(activity.id)">
+                    {{ attend_message }}
+                </button>
+            </div>
+            <div class="ui huge  message">
+                {{ activity.description }}
+                <br>
+                <br>
+                <a class="ui red huge tag label">活動資訊</a>
+                <div class="ui list">
+                    <div class="item">開始日期：{{ activity.start_at }}</div>
+                    <div class="item">結束日期：{{ activity.end_at }}</div>
+                    <div class="item">活動地點：{{ activity.position }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

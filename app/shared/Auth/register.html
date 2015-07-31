@@ -3,31 +3,21 @@
         註冊新帳號
     </div>
     <div class="content">
-        <form class="ui form">
+        <form class="ui form register">
             <div class="field">
                 <label>姓名</label>
-                <input type="text" name="account" placeholder="Account ... ">
-            </div>
-            <div class="field">
-                <label>帳號</label>
-                <input type="text" name="account" placeholder="Account ... ">
-            </div>
-            <div class="field">
-                <label>密碼</label>
-                <input type="password" name="password" placeholder="Password">
+                <input type="text" name="name" placeholder="Name ... " ng-model="name">
             </div>
             <div class="field">
                 <label>電子郵件</label>
-                <input type="email" name="account" placeholder="Account ... ">
+                <input type="email" name="email" placeholder="E-mail ... " ng-model="email">
             </div>
             <div class="field">
-                <label>性別</label>
-                <select name="" id="">
-                    <option value="male">男</option>
-                    <option value="female">女</option>
-                </select>
+                <label>密碼</label>
+                <input type="password" name="password" placeholder="Password ... " ng-model="password">
             </div>
-            <button class="ui button" type="submit">Sign up</button>
+            <button class="ui button" type="submit" id="submit">Sign up</button>
+            <div class="ui error message"></div>
         </form>
     </div>
 </div>

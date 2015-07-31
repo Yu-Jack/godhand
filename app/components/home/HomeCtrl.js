@@ -15,6 +15,7 @@ godhandControllers.controller('GetImgCtrl', ['$rootScope', '$scope', '$http',
             data.images.forEach(function(value, index){
                 $scope.images.push({
                     id: value.id,
+                    authId: value.authId,
                     imageurl: $rootScope.server + value.image_url,
                     auth:value.auth,
                     authavatar:$rootScope.server +value.authavatar,

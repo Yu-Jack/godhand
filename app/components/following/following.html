@@ -16,9 +16,11 @@
     <div class="four wide column">
         <div class="ui six doubling cards" style="padding-left:15px;">
             <div class="card" ng-repeat="person in people">
-                <div class="image">
-                    <img ng-src="{{ person.avatar }}">
-                </div>
+                <a ui-sref="profile({ userId: person.id})">
+                    <div class="image">
+                        <img ng-src="{{ person.avatar }}">
+                    </div>
+                </a>
             </div>
         </div>
     </div>

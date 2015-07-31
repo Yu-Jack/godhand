@@ -2,12 +2,14 @@
 <div class="ui  doubling five column grid" style="padding:15px 20px 0px 20px;margin-top:15px;">
     <div class="column" ng-repeat="person in people">
         <div class="ui fluid card">
-            <div class="image">
-                <img ng-src="{{ person.avatar }}">
-            </div>
-            <div class="content">
-                <a class="header">{{ person.name }}</a>
-            </div>
+            <a ui-sref="profile({userId:person.id})">
+                <div class="image">
+                    <img ng-src="{{ person.avatar }}">
+                </div>
+                <div class="content">
+                    <a class="header">{{ person.name }}</a>
+                </div>
+            </a>
         </div>
     </div>
 </div>

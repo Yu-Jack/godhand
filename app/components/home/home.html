@@ -15,7 +15,9 @@
     <div ng-repeat="image in images" class="column">
         <div class="ui card home-card link ">
             <div class="content">
-                <img class="ui avatar image" ng-src="{{ image.authavatar }}"> {{ image.auth }}
+                <a ui-sref="profile({userId:image.authId})">
+                    <img class="ui avatar image" ng-src="{{ image.authavatar }}"> {{ image.auth }}
+                </a>
             </div>
             <div class="image">
                 <a ui-sref="image({ imageId : image.id })">

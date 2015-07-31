@@ -4,26 +4,29 @@
 }
 </style>
 <div class="ui four column grid" style="margin-top:30px;padding:5px;">
-    <div class="column">
+    <div class="column" ng-repeat="activity in activitys">
         <div class="ui special cards">
             <div class="card">
+                <div class="content">
+                    <img ng-src="{{ activity.authavatar }}" class="ui avatar image" alt="">{{ activity.auth }}
+                </div>
                 <div class="blurring dimmable image">
                     <div class="ui dimmer">
                         <div class="content">
-                            <a href="">
+                            <a ui-sref="activity_detail({activity_id:activity.id})">
                                 <div class="center">
-                                    <div class="ui inverted button">Add Friend</div>
+                                    {{ activity.title }}
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <img src="img/1.jpg">
+                    <img ng-src="{{ activity.image_url }}">
                 </div>
                 <div class="content">
-                    <label class="header">Team Fu</label>
+                    <label class="header">參加人數：{{ activity.member }}</label>
                 </div>
                 <div class="extra content">
-                    <span class="date">Create in Sep 2014</span>
+                    <span class="date">Create at {{ activity.start_at }}</span>
                 </div>
             </div>
         </div>

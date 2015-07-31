@@ -48,6 +48,16 @@ godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvide
             url: "/activity",
             templateUrl: "app/components/activity/activity.html",
             controller: "ActivityCtrl"
+        })
+        .state('activity_detail',{
+            url: "/activity_detail/:activity_id",
+            templateUrl: "app/components/activity/activity_detail.html",
+            controller: "ActivityDetailCtrl"
+        })
+        .state('activity_create',{
+            url: "/activity_create",
+            templateUrl: "app/components/activity/activity_create.html",
+            controller: "ActivityCreateCtrl"
         });
 
 });

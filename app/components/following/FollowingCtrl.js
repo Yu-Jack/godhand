@@ -6,11 +6,11 @@ godhandControllers.controller('FollowingCtrl', ['$rootScope','$scope', '$http', 
 
         $http.get($rootScope.server + 'following/' + $rootScope.user).success(function(data){
             data.followings.forEach(function(value, index){
-                data.followings[index].avatar = $rootScope.server + data.followings[index].avatar;
+                value.avatar = $rootScope.server + value.avatar;
             });
             data.images.forEach(function(value, index){
-                data.images[index].authavatar = $rootScope.server + data.images[index].authavatar;
-                data.images[index].image_url = $rootScope.server + data.images[index].image_url;
+                value.authavatar = $rootScope.server + value.authavatar;
+                value.image_url = $rootScope.server + value.image_url;
             });
             $scope.people = data.followings;
             $scope.images = data.images;
