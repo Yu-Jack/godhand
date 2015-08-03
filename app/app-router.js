@@ -67,7 +67,7 @@ godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvide
 });
 
 godhand.run(function($rootScope, $state, $http, $cookies) {
-    $rootScope.server = "http://yujack.docker:8080/";
+    $rootScope.server = "http://140.118.155.25:6600/";
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded"
         // This only run one time
         // if (typeof $rootScope.logged == 'undefined' || $rootScope.logged == false) {

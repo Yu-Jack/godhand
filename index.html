@@ -30,15 +30,28 @@
         position: fixed;
         width: 100%;
         z-index: 10;
-        background-color: #000;
-        box-shadow: 0px 1px 3px 3px rgba(0,0,0,0.5);
+        background-color: rgba(15,15,15,0.8);
+        box-shadow: 0px 1px 3px 3px rgba(0,0,0,0.4);
     }
     .pusher{
-        min-height: 100%;
+        min-height: 94.6% !important;
         background: url('img/background.jpg') !important;
     }
     .index-background{
-        margin-top:30px;
+        padding-top:30px;
+        padding-bottom:15px;
+    }
+    footer{
+        min-height: 50px;
+        background-color: rgba(15,15,15,0.9);
+        text-align: center;
+    }
+    footer p{
+        font-size: 15px;
+        font-weight: bold;
+        color: #FFF;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
     }
     </style>
 </head>
@@ -60,6 +73,11 @@
         <br>
         <div ui-view class="index-background"></div>
     </div>
+    <footer>
+        <p>
+            GodHand 股份有限公司 連絡電話：02-xxxx-xxxx
+        </p>
+    </footer>
 
     <login-modal></login-modal>
     <register-modal></register-modal>
