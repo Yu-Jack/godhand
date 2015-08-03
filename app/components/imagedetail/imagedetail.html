@@ -17,11 +17,11 @@
 
                 <div class="comment" ng-repeat="comment in comments">
                     <!-- layer 0 comment -->
-                    <a class="avatar" >
+                    <a class="avatar" ui-sref="profile({userId:comment.id})">
                         <img ng-src="{{ comment.avatar }}">
                     </a>
                     <div class="content">
-                        <a class="author"> {{ comment.author }}</a>
+                        <a class="author" ui-sref="profile({userId:comment.id})"> {{ comment.author }}</a>
                         <div class="metadata">
                             <span class="date">{{ comment.date }}</span>
                         </div>

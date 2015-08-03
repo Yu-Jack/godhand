@@ -3,6 +3,7 @@
 <html ng-app="godhand">
 
 <head>
+    <base href="/godhand/">
     <meta charset="UTF-8">
     <title>God Hand</title>
     <link href="vendor/semantic/dist/semantic.css" rel="stylesheet">
@@ -25,10 +26,19 @@
         padding: 0px;
     }
     .fixed-bar {
+        height: 50px;
         position: fixed;
         width: 100%;
         z-index: 10;
-        background-color: #FFF;
+        background-color: #000;
+        box-shadow: 0px 1px 3px 3px rgba(0,0,0,0.5);
+    }
+    .pusher{
+        min-height: 100%;
+        background: url('img/background.jpg') !important;
+    }
+    .index-background{
+        margin-top:30px;
     }
     </style>
 </head>
@@ -41,11 +51,14 @@
     <div class="pusher">
         <div ng-controller="MenuCtrl" class="fixed-bar">
             <a ng-click="menu()">
-                <i class="sidebar icon" style="font-size:40px;padding:15px 0px;cursor:pointer;color:black;z-index:2"></i>
+                <i class="sidebar inverted icon" style="font-size:40px;padding:15px 0px;cursor:pointer;z-index:2"></i>
             </a>
+            <label style="display: inline-block;margin-top: 15px;vertical-align: top;color:#FFF; font-size:22px;">
+            GodHand {{ pagetitle }}
+            </label>
         </div>
         <br>
-        <div ui-view></div>
+        <div ui-view class="index-background"></div>
     </div>
 
     <login-modal></login-modal>

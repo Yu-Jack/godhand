@@ -3,6 +3,7 @@ godhandControllers.controller('FollowedCtrl', ['$rootScope', '$scope', '$http',
         if( $('.sidebar').hasClass('visible') ){
             $('.left.sidebar').sidebar('toggle');
         }
+        $rootScope.pagetitle = "追蹤你的人";
         $scope.people = [];
         $http.get($rootScope.server + 'followed/' + $rootScope.user).success(function(data){
             data.followeds.forEach(function(value, index){

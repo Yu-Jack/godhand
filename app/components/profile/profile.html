@@ -21,7 +21,7 @@
             </div>
             <div class="content">
                 <span class="header">{{ user.name }} <a ui-sref="profile_edit" ng-if="self">[修改資料]</a></span>
-                <a class="ui button right floated" ng-if="!self && logged == true" ng-class="{red:isFollow}"ng-click="Follow(user.id)">{{ follow }}</a>
+                <a class="ui button right floated" ng-if="!self && logged" ng-class="{red:isFollow}"ng-click="Follow(user.id)">{{ follow }}</a>
                 <div class="description">
                     {{ user.description }}
                 </div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="content">
                         <span class="right floated">
-                    <i class=" heart outline like icon"></i>{{ image.count_favorite }} likes
+                    <i class="heart like icon" ng-class="{'empty': !image.isLiked}" ng-click="like(image.id)"></i> {{ image.count_favorite }} likes
                 </span>
                         <i class=" comment icon"></i> {{ image.count_comments }} comments
                         <br>

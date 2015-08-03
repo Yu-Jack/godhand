@@ -3,7 +3,7 @@ godhandControllers.controller('FavoriteCtrl', ['$rootScope', '$scope', '$http',
         if( $('.sidebar').hasClass('visible') ){
             $('.left.sidebar').sidebar('toggle');
         }
-
+        $rootScope.pagetitle = "收藏";
         $http.get($rootScope.server + 'favorite/' + $rootScope.user).success(function(data){
             data.favorites.forEach(function(value, index){
                 data.favorites[index].image_url = $rootScope.server + value.image_url;

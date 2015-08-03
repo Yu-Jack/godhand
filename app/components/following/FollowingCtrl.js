@@ -3,7 +3,7 @@ godhandControllers.controller('FollowingCtrl', ['$rootScope','$scope', '$http', 
         if( $('.sidebar').hasClass('visible') ){
             $('.left.sidebar').sidebar('toggle');
         }
-
+        $rootScope.pagetitle = "追蹤";
         $http.get($rootScope.server + 'following/' + $rootScope.user).success(function(data){
             data.followings.forEach(function(value, index){
                 value.avatar = $rootScope.server + value.avatar;

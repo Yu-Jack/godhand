@@ -4,7 +4,7 @@ godhandControllers.controller('ImageDetailCtrl', ['$rootScope', '$scope', '$http
 
         $('body').scrollTop();
         $scope.logged = $rootScope.logged;
-
+        $rootScope.pagetitle = "圖片資訊";
         $http.get($rootScope.server + 'image/' + $stateParams.imageId).success(function(data) {
             $scope.image = {
                 title: data.image.title,
@@ -14,7 +14,9 @@ godhandControllers.controller('ImageDetailCtrl', ['$rootScope', '$scope', '$http
             };
             $scope.comments = [];
             data.comments.forEach(function(value, index) {
+                console.log(value);
                 $scope.comments.push({
+                    id: value.user_id,
                     author: value.name,
                     avatar: $rootScope.server + value.avatar,
                     text: value.comment,
@@ -36,7 +38,14 @@ godhandControllers.controller('ImageDetailCtrl', ['$rootScope', '$scope', '$http
             }
             $http(req).success(function(data) {
                 if (data.success) {
-                    $http.get($rootScope.server + 'user_profile/' + $rootScope.user).success(function(data2){
+                    req = {
+                        method: 'POST',
+                        url: $rootScope.server + 'user_profile',
+                        data: $.param({
+                            userId: $rootScope.user
+                        })
+                    };
+                    $http(req).success(function(data2) {
                         $scope.comments.push({
                             author: data2.user.name,
                             avatar: $rootScope.server + data2.user.avatar,

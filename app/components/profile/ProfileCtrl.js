@@ -24,6 +24,12 @@ godhandControllers.controller('ProfileCtrl', ['$rootScope', '$scope', '$http', '
                 $scope.follow = '追蹤';
             }
 
+            if( $stateParams.userId ==  $rootScope.user){
+                $rootScope.pagetitle = "個人頁面";
+            }else{
+                $rootScope.pagetitle = data.user.name;
+            }
+
             data.user.avatar = $rootScope.server + data.user.avatar;
 
             if ($stateParams.userId == $rootScope.user) {
@@ -63,6 +69,37 @@ godhandControllers.controller('ProfileCtrl', ['$rootScope', '$scope', '$http', '
                 }
             });
         }
+        $scope.like = function(id){
+            var req = {
+                method:'post',
+                url:$rootScope.server + 'like',
+                data: $.param({user_id:$rootScope.user, image_id:id})
+            }
+            
+            $http(req).success(function(data){
+                if(data.exist === false){
+                    alert('請先登入！');
+                }else{
+                    if(data.insert === true){
+                        $.grep($scope.images, function(e){
+                            if(e.id ===id){
+                                e.count_favorite = e.count_favorite + 1;
+                                e.isLiked = true;
+                            }
+                        });
+                    }else{
+                        $.grep($scope.images, function(e){
+                            if(e.id ===id){
+                                e.count_favorite = e.count_favorite - 1;
+                                e.isLiked = false;
+                            }
+                        });
+                    }
+                }
+            }).error(function(){
+                console.log('fail');
+            });
+        }
     }
 ]);
 godhandControllers.controller('ImageUploadCtrl', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
@@ -72,7 +109,7 @@ godhandControllers.controller('ImageUploadCtrl', ['$rootScope', '$scope', '$http
                 reload: true
             });
         }
-
+        $rootScope.pagetitle = "圖片上傳";
         $scope.submit = function() {
             var req = {
                 method: 'post',
@@ -102,6 +139,7 @@ godhandControllers.controller('ImageUploadCtrl', ['$rootScope', '$scope', '$http
 
         function readURL(input) {
             if (input.files && input.files[0]) {
+                console.log(input.files[0].type);
                 if (input.files[0].type === "image/jpeg" || input.files[0].type === "image/png") {
                     var reader = new FileReader();
                     reader.onload = function(e) {
@@ -110,6 +148,7 @@ godhandControllers.controller('ImageUploadCtrl', ['$rootScope', '$scope', '$http
                     reader.readAsDataURL(input.files[0]);
                 } else {
                     alert('Please upload image');
+                    alert(input.files[0].type);
                 }
             }
         }
@@ -123,7 +162,15 @@ godhandControllers.controller('ProfileEditCtrl', ['$rootScope', '$scope', '$http
                 reload: true
             });
         } else {
-            $http.get($rootScope.server + 'user_profile/' + $rootScope.user).success(function(data) {
+            $rootScope.pagetitle = "個人資料修改"
+            var req = {
+                method: 'post',
+                url : $rootScope.server + 'user_profile',
+                data: $.param({
+                    userId: $rootScope.user
+                })
+            }
+            $http(req).success(function(data) {
                 $scope.description = data.user.description;
                 $scope.email = data.user.email;
                 $scope.name = data.user.name;
@@ -136,6 +183,7 @@ godhandControllers.controller('ProfileEditCtrl', ['$rootScope', '$scope', '$http
 
             function readURL(input) {
                 if (input.files && input.files[0]) {
+                    console.log(input.files[0].type);
                     if (input.files[0].type === "image/jpeg" || input.files[0].type === "image/png") {
                         var reader = new FileReader();
                         reader.onload = function(e) {

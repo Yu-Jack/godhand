@@ -1,8 +1,12 @@
-godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
+godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, $locationProvider) {
 
     // For any unmatched url, send to /route1
-    // $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
     // cfpLoadingBarProvider.includeSpinner = false;
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
     $stateProvider
         .state('home', {
             url: "/",
@@ -34,27 +38,27 @@ godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvide
             templateUrl: "app/components/imagedetail/imagedetail.html",
             controller: "ImageDetailCtrl"
         })
-        .state('image_upload',{
+        .state('image_upload', {
             url: "/image_upload",
             templateUrl: "app/components/profile/profile_upload.html",
             controller: "ImageUploadCtrl"
         })
-        .state('profile_edit',{
+        .state('profile_edit', {
             url: "/profile_edit",
             templateUrl: "app/components/profile/profile_edit.html",
             controller: "ProfileEditCtrl"
         })
-        .state('activity',{
+        .state('activity', {
             url: "/activity",
             templateUrl: "app/components/activity/activity.html",
             controller: "ActivityCtrl"
         })
-        .state('activity_detail',{
+        .state('activity_detail', {
             url: "/activity_detail/:activity_id",
             templateUrl: "app/components/activity/activity_detail.html",
             controller: "ActivityDetailCtrl"
         })
-        .state('activity_create',{
+        .state('activity_create', {
             url: "/activity_create",
             templateUrl: "app/components/activity/activity_create.html",
             controller: "ActivityCreateCtrl"
@@ -65,10 +69,10 @@ godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvide
 godhand.run(function($rootScope, $state, $http, $cookies) {
     $rootScope.server = "http://yujack.docker:8080/";
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded"
-    // This only run one time
-    // if (typeof $rootScope.logged == 'undefined' || $rootScope.logged == false) {
-    //     $location.path('/');
-    // }
+        // This only run one time
+        // if (typeof $rootScope.logged == 'undefined' || $rootScope.logged == false) {
+        //     $location.path('/');
+        // }
     $rootScope.user = $cookies.get('user');
     $rootScope.logged = $cookies.get('logged');
     $rootScope.$on('$stateChangeStart',

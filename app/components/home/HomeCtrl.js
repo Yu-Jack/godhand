@@ -5,7 +5,7 @@ godhandControllers.controller('GetImgCtrl', ['$rootScope', '$scope', '$http',
             $('.left.sidebar').sidebar('toggle');
         }
         $scope.images = [];
-
+        $rootScope.pagetitle = "首頁";
         var request = {
             method: 'post',
             url: $rootScope.server +'image',
@@ -61,10 +61,12 @@ godhandControllers.controller('GetImgCtrl', ['$rootScope', '$scope', '$http',
     }
 ]);
 
-godhandControllers.controller('MenuCtrl', ['$scope', '$http',
-    function($scope, $http) {
+godhandControllers.controller('MenuCtrl', ['$rootScope', '$scope', '$http',
+    function($rootScope, $scope, $http) {
         $scope.menu = function(){
             $('.left.sidebar').sidebar('toggle');
         }
+
+        $scope.pagetitle = $rootScope.pagetitle;
     }
 ]);

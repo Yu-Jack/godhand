@@ -3,7 +3,7 @@ godhandControllers.controller('ActivityCtrl', ['$rootScope', '$scope', '$http',
         if ($('.sidebar').hasClass('visible')) {
             $('.left.sidebar').sidebar('toggle');
         }
-
+        $rootScope.pagetitle = "藝文活動";
 
         $http.get($rootScope.server + 'activity')
             .success(function(data) {
@@ -27,6 +27,7 @@ godhandControllers.controller('ActivityDetailCtrl', ['$rootScope', '$scope', '$h
         if ($('.sidebar').hasClass('visible')) {
             $('.left.sidebar').sidebar('toggle');
         }
+        $rootScope.pagetitle = "活動資訊";
         var req = {
             method: 'post',
             url : $rootScope.server + 'activity_detail',
@@ -73,7 +74,7 @@ godhandControllers.controller('ActivityCreateCtrl', ['$rootScope', '$scope', '$h
         if ($('.sidebar').hasClass('visible')) {
             $('.left.sidebar').sidebar('toggle');
         }
-
+        $rootScope.pagetitle = "建立活動";
         $('.ui.form').form({
             fields: {
                 title: {
@@ -136,6 +137,7 @@ godhandControllers.controller('ActivityCreateCtrl', ['$rootScope', '$scope', '$h
                         })
                     }
                     $http(req).success(function(data) {
+                        // console.log(data);
                         if (data.success) {
                             $state.go('activity_detail', {
                                 activity_id: data.activity_id
