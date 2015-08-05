@@ -24,6 +24,7 @@
     "font-awesome": "~4.3.0",
     "jquery-ui": "~1.11.4",
     "jQuery-Timepicker-Addon": "~1.5.5",
-    "skrollr": "~0.6.30"
+    "skrollr": "~0.6.30",
+    "ResponsiveSlides": "*"
   }
 }

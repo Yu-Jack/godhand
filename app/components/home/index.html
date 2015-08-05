@@ -1,6 +1,23 @@
 <style>
-.banner {
+.banner{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	opacity: 0.6;
+	position: relative;
+}
+.banner li {
+ 	 width: 100%;
+}
+.banner-1 {
     background-image: url('img/banner_1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.6;
+}
+.banner-2 {
+    background-image: url('img/banner_2.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -54,8 +71,11 @@
 }
 
 </style>
-<div class="banner">
-</div>
+<ul class="banner">
+	<li class="banner-1"></li>
+	<li class="banner-2"></li>
+</ul>
+
 <div class="site-explain">
     <div class="ui grid doubling stackable">
         <div class="sixteen wide column" style="text-align:center;">
@@ -69,7 +89,7 @@
 </div>
 
 <div class="about" id="about">
-    <div class="ui  grid doubling stackable">
+    <div class="ui grid doubling stackable">
         <div class="ui eight wide column">
             <h1 class="ui center aligned header">關於我們</h1>
             <h3 class="ui center aligned header">我們將提供讓作家們互相交流的平台</h3>
