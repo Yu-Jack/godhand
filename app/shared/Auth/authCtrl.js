@@ -21,6 +21,7 @@ godhandControllers.controller('LoginCtrl', ['$rootScope', '$scope', '$state', '$
                     $cookies.put('user', data.user_id);
                     $cookies.put('logged', data.logged);
                     $('.ui.modal.login').modal('hide');
+                    alert("登入成功！");
                     $state.go('home', {}, {
                         reload: true
                     });
@@ -80,6 +81,7 @@ godhandControllers.controller('RegisterCtrl', ['$rootScope', '$scope', '$state',
                         $cookies.put('user', data.user_id);
                         $cookies.put('logged', true);
                         $('.ui.modal.register').modal('hide');
+                        alert("註冊成功！");
                         $state.go('home', {}, {
                             reload: true
                         });

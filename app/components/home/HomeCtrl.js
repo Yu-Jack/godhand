@@ -5,7 +5,7 @@ godhandControllers.controller('GetImgCtrl', ['$rootScope', '$scope', '$http',
             $('.left.sidebar').sidebar('toggle');
         }
         $scope.images = [];
-        $rootScope.pagetitle = "首頁";
+        $rootScope.pagetitle = "作品";
         var request = {
             method: 'post',
             url: $rootScope.server +'image',
@@ -68,5 +68,17 @@ godhandControllers.controller('MenuCtrl', ['$rootScope', '$scope', '$http',
         }
 
         $scope.pagetitle = $rootScope.pagetitle;
+    }
+]);
+
+godhandControllers.controller('IndexCtrl', ['$rootScope', '$scope', '$http',
+    function($rootScope, $scope, $http) {
+        $('.banner').attr('style', 'height:' + ($(window).height()) + 'px;');
+        $rootScope.pagetitle = "";
+        $('.knowmore').click(function(){
+            $('html, body').stop().animate({
+                scrollTop: $('#about').offset().top - 50
+            }, 1500);
+        });
     }
 ]);

@@ -16,6 +16,7 @@ godhand.directive("sideBar", function ($rootScope, $state, $cookies) {
                 $rootScope.user = 0;
                 $cookies.remove('user');
                 $cookies.remove('logged');
+                alert("登出成功！");
                 $state.go('home',{},{reload:true});
             }
         },

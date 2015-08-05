@@ -1,0 +1,109 @@
+<style>
+.banner {
+    background-image: url('img/banner_1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.6;
+}
+
+.site-explain {
+    min-height: 200px;
+    width: 100%;
+    position: absolute;
+    top: 100px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes arrow {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fa-angle-double-down {
+    -webkit-animation: arrow 1s infinite;
+    -o-animation: arrow 1s infinite;
+    animation: arrow 1s infinite;
+}
+
+.avatar {
+    width: 170px !important;
+    height: 170px !important;
+}
+.fa-15x{
+	font-size: 15em;
+}
+.align-center{
+	text-align: center;
+}
+#about{
+	padding: 50px 0px;
+	border-top: 10px solid rgba(0,0,0,0.5);
+	border-bottom: 10px solid rgba(0,0,0,0.5);
+}
+#explain{
+	padding: 50px 0px;
+}
+#team{
+	padding:50px 0px;
+	border-top: 10px solid rgba(0,0,0,0.5);
+}
+
+</style>
+<div class="banner">
+</div>
+<div class="site-explain">
+    <div class="ui grid doubling stackable">
+        <div class="sixteen wide column" style="text-align:center;">
+            <img src="img/logo.png" style="width:initial;">
+            <br>
+            <h2 class="ui center aligned header">了解更多</h2>
+            <br>
+            <a class="knowmore"><i class="fa fa-angle-double-down" style="font-size:50px;color:black;cursor:pointer;"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="about" id="about">
+    <div class="ui  grid doubling stackable">
+        <div class="ui eight wide column">
+            <h1 class="ui center aligned header">關於我們</h1>
+            <h3 class="ui center aligned header">我們將提供讓作家們互相交流的平台</h3>
+            <h3 class="ui center aligned header">GodHand，意味「神之手」是對藝術家的稱呼</h3>
+            <h3 class="ui center aligned header">在這，能夠發揮本領，並且交流意見</h3>
+            <h3 class="ui center aligned header">透過展覽的活動，讓大家能夠看見他們的作品，讓觀看者能夠重新思考藝術的另一面</h3>
+        </div>
+        <div class="ui eight wide column align-center">
+        	<i  class="fa fa-paint-brush fa-15x"></i>
+        </div>
+    </div>
+</div>
+<div class="explain" id="explain" >
+    <div class="ui grid doubling stackable centered">
+        <div class="eight wide column center aligned">
+        	<i  class="fa fa-file-image-o fa-15x"></i>
+        </div>
+        <div class="eight wide column center aligned">
+    		<h1 class="ui center aligned header">各式作品</h1>
+        	<h3 class="ui center aligned header">這裡聚集了插畫家、藝術家的精華</h3>
+        	<h3 class="ui center aligned header">我們會推薦給你熱門以及最新的作品！</h3>
+        	<h3 class="ui center aligned header">還在等什麼呢！？</h3>
+        	<a ui-sref="home" class="ui red button">快來看看吧！</a>
+        </div>
+    </div>
+</div>
+<div class="team" id="team" >
+    <h1 class="ui center aligned header">團隊成員</h1>
+    <div class="ui grid doubling stackable centered">
+        <div class="six wide column center aligned">
+            <img class="ui avatar image" src="img/banner_1.jpg">
+        </div>
+        <div class="six wide column center aligned">
+            <img class="ui avatar image" src="img/banner_1.jpg">
+        </div>
+    </div>
+</div>

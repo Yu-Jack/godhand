@@ -3,7 +3,7 @@
 <html ng-app="godhand">
 
 <head>
-    <base href="/">
+    <base href="/godhand/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>God Hand</title>
@@ -26,6 +26,7 @@
     body {
         margin: 0px;
         padding: 0px;
+        font-family: "微軟正黑體" !important;
     }
     .fixed-bar {
         height: 50px;
@@ -41,7 +42,6 @@
     }
     .index-background{
         padding-top:30px;
-        padding-bottom:15px;
     }
     footer{
         min-height: 50px;
@@ -60,8 +60,6 @@
 
 <body>
 
-
-
     <side-bar></side-bar>
     <div class="pusher">
         <div ng-controller="MenuCtrl" class="fixed-bar">
@@ -69,7 +67,7 @@
                 <i class="sidebar inverted icon" style="font-size:40px;padding:15px 0px;cursor:pointer;z-index:2"></i>
             </a>
             <label style="display: inline-block;margin-top: 15px;vertical-align: top;color:#FFF; font-size:22px;">
-            GodHand {{ pagetitle }}
+            <a ui-sref="index" style="color:#FFF;">GodHand</a> {{ pagetitle }}
             </label>
         </div>
         <br>
@@ -94,6 +92,7 @@
     
     <script src="vendor/jquery/dist/jquery.min.js"></script>
     <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="vendor/skrollr/dist/skrollr.min.js"></script>
     <script src="vendor/jQuery-Timepicker-Addon/dist/jquery-ui-timepicker-addon.min.js"></script>
     <script src="vendor/semantic/dist/semantic.js"></script>
     <script src="vendor/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
@@ -115,7 +114,6 @@
     <script src="app/components/favorite/FavoriteCtrl.js"></script>
     <script src="app/components/activity/ActivityCtrl.js"></script>
     <script src="app/shared/Auth/authCtrl.js"></script>
-
 </body>
 
 </html>
