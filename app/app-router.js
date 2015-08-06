@@ -82,5 +82,6 @@ godhand.run(function($rootScope, $state, $http, $cookies) {
     $rootScope.logged = $cookies.get('logged');
     $rootScope.$on('$stateChangeStart',
         function(event, toState, toParams, fromState, fromParams) {
+		$('.parallax-mirror').remove();
         });
 });

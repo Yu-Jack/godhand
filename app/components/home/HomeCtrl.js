@@ -76,7 +76,7 @@ godhandControllers.controller('IndexCtrl', ['$rootScope', '$scope', '$http',
         $('.banner').attr('style', 'height:' + ($(window).height()) + 'px;');
 	$('.banner').attr('data-natural-height', $(window).height());
 	$('.banner').parallax({
-	    zIndex:0,
+	    zIndex:2,
 	    positionX: '0px',
 	    positionY: '0px'
 	});
