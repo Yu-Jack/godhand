@@ -74,10 +74,12 @@ godhandControllers.controller('MenuCtrl', ['$rootScope', '$scope', '$http',
 godhandControllers.controller('IndexCtrl', ['$rootScope', '$scope', '$http',
     function($rootScope, $scope, $http) {
         $('.banner').attr('style', 'height:' + ($(window).height()) + 'px;');
-        $('.banner li').attr('style', 'height:' + ($(window).height()) + 'px;');
-        $(".banner").responsiveSlides({
-            speed:800
-        });
+	$('.banner').attr('data-natural-height', $(window).height());
+	$('.banner').parallax({
+	    zIndex:0,
+	    positionX: '0px',
+	    positionY: '0px'
+	});
         $rootScope.pagetitle = "";
         $('.knowmore').click(function(){
             $('html, body').stop().animate({
