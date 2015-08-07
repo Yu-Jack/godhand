@@ -3,13 +3,13 @@
     width: 100% !important;
 }
 </style>
-<div class="ui four column grid doubling stackable" style="margin-top:30px;padding:5px;">
+<div class="ui three column grid doubling stackable" style="margin-top:30px;padding:5px;">
     <div class="column" ng-repeat="activity in activitys">
         <div class="ui special cards">
             <div class="card">
-                <div class="content">
+                <!-- <div class="content">
                     <img ng-src="{{ activity.authavatar }}" class="ui avatar image" alt="">{{ activity.auth }}
-                </div>
+                </div> -->
                 <div class="blurring dimmable image">
                     <div class="ui dimmer">
                         <div class="content">
@@ -20,7 +20,8 @@
                             </a>
                         </div>
                     </div>
-                    <img ng-src="{{ activity.image_url }}">
+                    <div style="background-image:url('{{ activity.image_url }}'); height: 300px; background-position:center;background-size:cover;"></div>
+                    <!-- <img ng-src="{{ activity.image_url }}"> -->
                 </div>
                 <div class="content">
                     <label class="header">參加人數：{{ activity.member }}</label>

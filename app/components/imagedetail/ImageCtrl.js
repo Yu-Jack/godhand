@@ -20,7 +20,7 @@ godhandControllers.controller('ImageDetailCtrl', ['$rootScope', '$scope', '$http
                     author: value.name,
                     avatar: $rootScope.server + value.avatar,
                     text: value.comment,
-                    date: 'Today at 5:42PM'
+                    date: value.created_at
                 });
             });
         });
@@ -50,7 +50,7 @@ godhandControllers.controller('ImageDetailCtrl', ['$rootScope', '$scope', '$http
                             author: data2.user.name,
                             avatar: $rootScope.server + data2.user.avatar,
                             text: $('.reply .field textarea').val(),
-                            date: 'Today at 5:42PM'
+                            date: new Date()
                         });
                         $('.reply .field textarea').val("");
                     });
