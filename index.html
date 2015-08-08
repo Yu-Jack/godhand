@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html ng-app="godhand">
 
 <head>
@@ -7,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>God Hand</title>
-    <link rel="shortcut icon" href="/img/godhand.ico">    
+    <link rel="shortcut icon" href="/img/godhand.ico">
     <link href="vendor/semantic/dist/semantic.css" rel="stylesheet">
     <link href="vendor/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="vendor/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet">
@@ -15,56 +14,60 @@
     <link href="vendor/angular-loading-bar/build/loading-bar.css" rel="stylesheet">
     <link href="vendor/jquery-ui/themes/base/jquery-ui.css" rel="stylesheet">
     <link href="vendor/jQuery-Timepicker-Addon/dist/jquery-ui-timepicker-addon.css" rel="stylesheet">
-
-
     <style>
     img {
         width: 100%;
         vertical-align: top;
     }
+    
     html,
     body {
         margin: 0px;
         padding: 0px;
         font-family: "微軟正黑體" !important;
     }
+    
     .fixed-bar {
         height: 50px;
         position: fixed;
         width: 100%;
         z-index: 10;
-        background-color: rgba(15,15,15,0.8);
-        box-shadow: 0px 1px 3px 3px rgba(0,0,0,0.4);
+        background-color: rgba(15, 15, 15, 0.8);
+        box-shadow: 0px 1px 3px 3px rgba(0, 0, 0, 0.4);
     }
-    .pusher{
+    
+    .pusher {
         min-height: 94.6% !important;
         background: url('img/background.jpg') !important;
-	z-index:2 !important;
+        z-index: 2 !important;
     }
-    .index-background{
-        padding-top:30px;
+    
+    .index-background {
+        padding-top: 30px;
     }
-    footer{
+    
+    footer {
         min-height: 50px;
-        background-color: rgba(15,15,15,0.9);
+        background-color: rgba(15, 15, 15, 0.9);
         text-align: center;
     }
-    footer p{
+    
+    footer p {
         font-size: 15px;
         font-weight: bold;
         color: #FFF;
         padding-top: 15px !important;
         padding-bottom: 15px !important;
     }
-.parallax-window {
-    min-height: 400px;
-    background: transparent;
-}
+    
+    .parallax-window {
+        min-height: 400px;
+        background: transparent;
+    }
     </style>
 </head>
 
 <body>
-
     <side-bar></side-bar>
     <div class="pusher">
         <div ng-controller="MenuCtrl" class="fixed-bar">
@@ -72,8 +75,9 @@
                 <i class="sidebar inverted icon" style="font-size:40px;padding:15px 0px;cursor:pointer;z-index:2"></i>
             </a>
             <label style="display: inline-block;margin-top: 15px;vertical-align: top;color:#FFF; font-size:22px;">
-            <a ui-sref="index" style="color:#FFF;">GodHand</a> {{ pagetitle }}
+                <a ui-sref="index" style="color:#FFF;">GodHand</a> {{ pagetitle }}
             </label>
+            <a class="gotop" style="margin:0 15px;float:right;"><i class="fa fa-angle-double-up" style="font-size:50px;color:white;cursor:pointer;"></i></a>
         </div>
         <br>
         <div ui-view class="index-background"></div>
@@ -83,10 +87,8 @@
             GodHand 股份有限公司 連絡電話：02-xxxx-xxxx
         </p>
     </footer>
-
     <login-modal></login-modal>
     <register-modal></register-modal>
-
     <!-- Angular -->
     <script src="vendor/angular/angular.min.js"></script>
     <!-- UI-Router -->
@@ -94,7 +96,6 @@
     <!-- ngCookies -->
     <script src="vendor/angular-cookies/angular-cookies.js"></script>
     <script src="vendor/angular-loading-bar/build/loading-bar.min.js"></script>
-    
     <script src="vendor/jquery/dist/jquery.min.js"></script>
     <script src="vendor/parallax.js/parallax.js"></script>
     <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
@@ -103,14 +104,10 @@
     <script src="vendor/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
     <script src="vendor/jquery-file-upload/js/jquery.iframe-transport.js"></script>
     <script src="vendor/jquery-file-upload/js/jquery.fileupload.js"></script>
-
-
     <script src="app/app-module.js"></script>
     <script src="app/app-router.js"></script>
-
     <script src="app/shared/Auth/authDirective.js"></script>
     <script src="app/shared/sidebar/sidebarDirective.js"></script>
-
     <script src="app/components/home/HomeCtrl.js"></script>
     <script src="app/components/imagedetail/ImageCtrl.js"></script>
     <script src="app/components/profile/ProfileCtrl.js"></script>

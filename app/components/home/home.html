@@ -9,10 +9,37 @@
     width: 100% !important;
     padding: 10px !important;
 }
+.hot{
+    padding:15px 10px;
+    width: 50px !important;
+    height: 50px !important;
+    color: white;
+    background-color: rgba(188,0,0,0.6) !important;
+}
+.hot:hover{
+    color:white;
+    background-color: rgba(155,20,20,0.9) !important;
+}
+.cool{
+    padding:15px 3px;
+    width: 50px !important;
+    height: 50px !important;
+    color: white;
+    background-color: rgba(5,5,188,0.6) !important;
+}
+.cool:hover{
+    color:white;
+    background-color: rgba(5,5,155,0.9) !important;
+}
+.cool, .hot{
+    margin: 15px 0px 15px 15px;
+
+}
 </style>
-<div class="ui three column grid doubling stackable" style="margin-top:15px;">
-    
-    <div ng-repeat="image in images" class="column">
+<a href="#" class="ui avatar image hot" ng-click="order('hot')"><span>熱門</span></a>
+<a href="#" class="ui avatar image cool" ng-click="order('cool')"><span>未探索</span></a>
+<div class="ui three column grid doubling stackable">
+    <div ng-repeat="image in images | orderBy:'views':reverse " class="column">
         <div class="ui card home-card link ">
             <div class="content">
                 <a ui-sref="profile({userId:image.authId})">

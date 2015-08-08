@@ -20,7 +20,7 @@ godhandControllers.controller('GetImgCtrl', ['$rootScope', '$scope', '$http',
                     auth:value.auth,
                     authavatar:$rootScope.server +value.authavatar,
                     comments: value.count_comments,
-                    views: value.count_views,
+                    views: parseInt(value.count_views),
                     favorite: value.count_favorite,
                     isLiked:value.isLiked
                 });
@@ -58,6 +58,13 @@ godhandControllers.controller('GetImgCtrl', ['$rootScope', '$scope', '$http',
                 console.log('fail');
             });
         }
+        $scope.order = function(feature){
+            if( 'hot' === feature ){
+                $scope.reverse = true;
+            }else{
+                $scope.reverse = false;
+            }
+        }
     }
 ]);
 
@@ -84,7 +91,7 @@ godhandControllers.controller('IndexCtrl', ['$rootScope', '$scope', '$http',
             $('html, body').stop().animate({
                 scrollTop: 0
             });
-        })
+        });
         $rootScope.pagetitle = "";
         $('.knowmore').click(function(){
             $('html, body').stop().animate({
