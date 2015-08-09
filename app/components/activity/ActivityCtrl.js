@@ -45,7 +45,12 @@ godhandControllers.controller('ActivityDetailCtrl', ['$rootScope', '$scope', '$h
             }
             data.activity.image_url = $rootScope.server + data.activity.image_url;
             $scope.activity = data.activity;
-
+            $http.get('http://maps.google.com/maps/api/geocode/json?address='+data.activity.position)
+            .success(function(data){
+                $scope.map = { center: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }, zoom: 16 };
+                $scope.marker = { coords: { latitude: data.results[0].geometry.location.lat, longitude: data.results[0].geometry.location.lng }};
+            });
+            
         });
         $scope.success = false;
         $scope.attend = function(id){

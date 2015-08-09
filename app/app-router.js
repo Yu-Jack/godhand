@@ -1,5 +1,9 @@
-godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, $locationProvider) {
-
+godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyA8Q6U7Za14E_V5U1vNeHZztlndngWRLYo',
+        v: '3.20',
+        libraries: 'weather,geometry,visualization'
+    });
     // For any unmatched url, send to /route1
     $urlRouterProvider.otherwise('/');
     // cfpLoadingBarProvider.includeSpinner = false;
@@ -72,7 +76,7 @@ godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvide
 });
 
 godhand.run(function($rootScope, $state, $http, $cookies) {
-    $rootScope.server = "http://140.118.155.25:6600/";
+    $rootScope.server = "http://yujack.docker:8080/";
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $rootScope.user = $cookies.get('user');
