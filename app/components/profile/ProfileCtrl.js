@@ -1,20 +1,21 @@
-godhandControllers.controller('ProfileCtrl', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
-    function($rootScope, $scope, $http, $state, $stateParams) {
-        if ($('.sidebar').hasClass('visible')) {
-            $('.left.sidebar').sidebar('toggle');
-        }
+angular
+    .module('godhand')
+    .controller('ProfileCtrl', ProfileCtrl)
+    .controller('ImageUploadCtrl', ImageUploadCtrl)
+    .controller('ProfileEditCtrl', ProfileEditCtrl);
 
-        $scope.logged = $rootScope.logged;
-        $scope.images = [];
-        var req = {
-            method: 'post',
-            url: $rootScope.server + 'user_profile',
-            data: $.param({
-                targetId: $stateParams.userId,
-                userId: $rootScope.user
-            })
-        };
-        $http(req).success(function(data) {
+ProfileCtrl.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'ProfileService'];
+
+function ProfileCtrl($rootScope, $scope, $state, $stateParams, ProfileService) {
+    if ($('.sidebar').hasClass('visible')) {
+        $('.left.sidebar').sidebar('toggle');
+    }
+
+    $scope.logged = $rootScope.logged;
+    $scope.images = [];
+
+    ProfileService.getProfile($stateParams.userId)
+        .success(function(data) {
 
             if (data.isFollow) {
                 $scope.isFollow = true;
@@ -24,9 +25,9 @@ godhandControllers.controller('ProfileCtrl', ['$rootScope', '$scope', '$http', '
                 $scope.follow = '追蹤';
             }
 
-            if( $stateParams.userId ==  $rootScope.user){
+            if ($stateParams.userId == $rootScope.user) {
                 $rootScope.pagetitle = "個人頁面";
-            }else{
+            } else {
                 $rootScope.pagetitle = data.user.name;
             }
 
@@ -46,16 +47,9 @@ godhandControllers.controller('ProfileCtrl', ['$rootScope', '$scope', '$http', '
             });
         });
 
-        $scope.Follow = function(id) {
-            var req = {
-                method: 'post',
-                url: $rootScope.server + 'follow',
-                data: $.param({
-                    userId: $rootScope.user,
-                    followId: id
-                })
-            };
-            $http(req).success(function(data) {
+    $scope.Follow = function(id) {
+        ProfileService.follow(id)
+            .success(function(data) {
                 data.target.avatar = $rootScope.server + data.target.avatar;
                 $scope.user = data.target;
                 if (data.success) {
@@ -68,61 +62,55 @@ godhandControllers.controller('ProfileCtrl', ['$rootScope', '$scope', '$http', '
                     }
                 }
             });
-        }
-        $scope.like = function(id){
-            var req = {
-                method:'post',
-                url:$rootScope.server + 'like',
-                data: $.param({user_id:$rootScope.user, image_id:id})
-            }
-            
-            $http(req).success(function(data){
-                if(data.exist === false){
+    }
+    $scope.like = function(id) {
+
+        ProfileService.like(id)
+            .success(function(data) {
+                if (data.exist === false) {
                     alert('請先登入！');
-                }else{
-                    if(data.insert === true){
-                        $.grep($scope.images, function(e){
-                            if(e.id ===id){
+                } else {
+                    if (data.insert === true) {
+                        $.grep($scope.images, function(e) {
+                            if (e.id === id) {
                                 e.count_favorite = e.count_favorite + 1;
                                 e.isLiked = true;
                             }
                         });
-                    }else{
-                        $.grep($scope.images, function(e){
-                            if(e.id ===id){
+                    } else {
+                        $.grep($scope.images, function(e) {
+                            if (e.id === id) {
                                 e.count_favorite = e.count_favorite - 1;
                                 e.isLiked = false;
                             }
                         });
                     }
                 }
-            }).error(function(){
+            }).error(function() {
                 console.log('fail');
             });
-        }
     }
-]);
-godhandControllers.controller('ImageUploadCtrl', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
-    function($rootScope, $scope, $http, $state, $stateParams) {
-        if (!$rootScope.logged) {
-            $state.go('home', {}, {
-                reload: true
-            });
-        }
-        $rootScope.pagetitle = "圖片上傳";
-        $scope.submit = function() {
-            var req = {
-                method: 'post',
-                url: $rootScope.server + 'upload',
-                data: $.param({
-                    image: $('#target').attr('src'),
-                    name: $('#fileupload').prop('files')[0].name,
-                    title: $scope.title,
-                    content: $scope.content,
-                    user: $rootScope.user
-                })
-            }
-            $http(req).success(function(data) {
+}
+
+ImageUploadCtrl.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'ProfileService'];
+
+function ImageUploadCtrl($rootScope, $scope, $state, $stateParams, ProfileService) {
+    if (!$rootScope.logged) {
+        $state.go('home', {}, {
+            reload: true
+        });
+    }
+    $rootScope.pagetitle = "圖片上傳";
+    $scope.submit = function() {
+        var params = {
+            image: $('#target').attr('src'),
+            name: $('#fileupload').prop('files')[0].name,
+            title: $scope.title,
+            content: $scope.content,
+            user: $rootScope.user
+        };
+        ProfileService.upload(params)
+            .success(function(data) {
                 if (data.success) {
                     $state.go('image', {
                         imageId: data.imageId
@@ -131,7 +119,46 @@ godhandControllers.controller('ImageUploadCtrl', ['$rootScope', '$scope', '$http
                     });
                 }
             });
+    }
+
+    $('#fileupload').change(function() {
+        readURL(this);
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            console.log(input.files[0].type);
+            if (input.files[0].type === "image/jpeg" || input.files[0].type === "image/png") {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#target').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                alert('Please upload image');
+                alert(input.files[0].type);
+            }
         }
+    }
+}
+
+ProfileEditCtrl.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'ProfileService'];
+
+function ProfileEditCtrl($rootScope, $scope, $state, $stateParams, ProfileService) {
+    if (!$rootScope.logged) {
+        $state.go('home', {}, {
+            reload: true
+        });
+    } else {
+        $rootScope.pagetitle = "個人資料修改"
+
+        ProfileService.getProfile()
+            .success(function(data) {
+                $scope.description = data.user.description;
+                $scope.email = data.user.email;
+                $scope.name = data.user.name;
+                $scope.avatar = $rootScope.server + data.user.avatar;
+            });
 
         $('#fileupload').change(function() {
             readURL(this);
@@ -148,69 +175,23 @@ godhandControllers.controller('ImageUploadCtrl', ['$rootScope', '$scope', '$http
                     reader.readAsDataURL(input.files[0]);
                 } else {
                     alert('Please upload image');
-                    alert(input.files[0].type);
                 }
             }
         }
 
-    }
-]);
-godhandControllers.controller('ProfileEditCtrl', ['$rootScope', '$scope', '$http', '$state', '$stateParams',
-    function($rootScope, $scope, $http, $state, $stateParams) {
-        if (!$rootScope.logged) {
-            $state.go('home', {}, {
-                reload: true
-            });
-        } else {
-            $rootScope.pagetitle = "個人資料修改"
-            var req = {
-                method: 'post',
-                url : $rootScope.server + 'user_profile',
-                data: $.param({
-                    userId: $rootScope.user
-                })
-            }
-            $http(req).success(function(data) {
-                $scope.description = data.user.description;
-                $scope.email = data.user.email;
-                $scope.name = data.user.name;
-                $scope.avatar = $rootScope.server + data.user.avatar;
-            });
+        $scope.submit = function() {
+            image_name = (typeof $('#fileupload').prop('files')[0] === 'undefined' ? "" : $('#fileupload').prop('files')[0].name);
 
-            $('#fileupload').change(function() {
-                readURL(this);
-            });
+            var params = {
+                image: $('#target').attr('src'),
+                image_name: image_name,
+                name: $scope.name,
+                description: $scope.description,
+                user: $rootScope.user
+            };
 
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    console.log(input.files[0].type);
-                    if (input.files[0].type === "image/jpeg" || input.files[0].type === "image/png") {
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                            $('#target').attr('src', e.target.result);
-                        }
-                        reader.readAsDataURL(input.files[0]);
-                    } else {
-                        alert('Please upload image');
-                    }
-                }
-            }
-
-            $scope.submit = function() {
-                image_name = (typeof $('#fileupload').prop('files')[0] === 'undefined' ? "" : $('#fileupload').prop('files')[0].name);
-
-                var req = {
-                    method: 'post',
-                    url: $rootScope.server + 'profile_edit',
-                    data: $.param({
-                        image: $('#target').attr('src'),
-                        image_name: image_name,
-                        name: $scope.name,
-                        description: $scope.description,
-                        user: $rootScope.user
-                    })
-                }
-                $http(req).success(function(data) {
+            ProfileService.edit(params)
+                .success(function(data) {
                     if (data.success) {
                         // $state.go('home',{},{reload:true});
                         $state.go('profile', {
@@ -220,8 +201,7 @@ godhandControllers.controller('ProfileEditCtrl', ['$rootScope', '$scope', '$http
                         });
                     }
                 });
-            }
-
         }
+
     }
-]);
+}

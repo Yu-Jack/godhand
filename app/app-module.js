@@ -6,7 +6,4 @@ angular.module('godhand', ['uiGmapgoogle-maps']).config(
         });
     }]
 );
-var godhand = angular.module('godhand', ["ui.router", "ngCookies", "angular-loading-bar" , "godhandControllers","uiGmapgoogle-maps"]);
-var godhandControllers = angular.module('godhandControllers', []);
-
-
+angular.module('godhand', ["ui.router", "ngCookies", "angular-loading-bar" ,"uiGmapgoogle-maps"]);

@@ -1,15 +1,19 @@
-godhand.directive("loginModal", function() {
-    return {
-        restrict: "E",
-        templateUrl: 'app/shared/Auth/login.html',
-        controller: 'LoginCtrl'
-    }
-});
+angular
+    .module('godhand')
+    .directive("loginModal", loginModal)
+    .directive("registerModal", registerModal);
 
-godhand.directive("registerModal", function() {
+function loginModal(){
+    return {
+            restrict: "E",
+            templateUrl: 'app/shared/Auth/login.html',
+            controller: 'LoginCtrl'
+        }
+}
+function registerModal() {
     return {
         restrict: "E",
         templateUrl: 'app/shared/Auth/register.html',
         controller: 'RegisterCtrl'
     }
-});
+}

@@ -1,2 +1,3 @@
 /vendor
 .htaccess
+js/*.min.js

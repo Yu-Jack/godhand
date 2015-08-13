@@ -1,4 +1,17 @@
-godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
+angular
+    .module('godhand')
+    .config(config)
+    .run(run);
+
+config.$inject = [
+    '$stateProvider',
+    '$urlRouterProvider',
+    'cfpLoadingBarProvider',
+    '$locationProvider',
+    'uiGmapGoogleMapApiProvider'
+]
+
+function config($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyA8Q6U7Za14E_V5U1vNeHZztlndngWRLYo',
         v: '3.20',
@@ -72,10 +85,11 @@ godhand.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvide
             templateUrl: "app/components/activity/activity_create.html",
             controller: "ActivityCreateCtrl"
         });
+}
 
-});
+run.$inject = ['$rootScope', '$state', '$http', '$cookies'];
 
-godhand.run(function($rootScope, $state, $http, $cookies) {
+function run($rootScope, $state, $http, $cookies) {
     $rootScope.server = "http://yujack.docker:8080/";
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
@@ -89,5 +103,8 @@ godhand.run(function($rootScope, $state, $http, $cookies) {
                     scrollTop: 0
                 });
             });
+            $('html, body').stop().animate({
+                scrollTop: 0
+            });
         });
-});
+}

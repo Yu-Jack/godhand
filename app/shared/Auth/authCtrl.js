@@ -1,20 +1,14 @@
-godhandControllers.controller('LoginCtrl', ['$rootScope', '$scope', '$state', '$http', '$cookies',
-    function($rootScope, $scope, $state, $http, $cookies) {
-        $scope.submit = function() {
-            // $rootScope.logged = true;
-            // $('.ui.modal.login').modal('hide');
-            // $state.go('home', {}, {reload:true});
-            // 
-            var req = {
-                method: 'POST',
-                url: $rootScope.server + 'login',
-                data: $.param({
-                    email: $scope.email,
-                    password: $scope.password
-                })
-            };
+angular
+    .module('godhand')
+    .controller('LoginCtrl', LoginCtrl)
+    .controller('RegisterCtrl', RegisterCtrl);
 
-            $http(req).success(function(data, status, headers, config) {
+LoginCtrl.$inject = ['$rootScope', '$scope', '$state', '$cookies', 'AuthService'];
+function LoginCtrl($rootScope, $scope, $state, $cookies, AuthService) {
+    $scope.submit = function() {
+
+        AuthService.login($scope.email, $scope.password)
+            .success(function(data, status, headers, config) {
                 if (data.logged) {
                     $rootScope.logged = data.logged;
                     $rootScope.user = data.user_id;
@@ -31,12 +25,12 @@ godhandControllers.controller('LoginCtrl', ['$rootScope', '$scope', '$state', '$
             }).error(function(data, status, headers, config) {
                 console.log('error');
             });
-        };
-    }
-]);
-godhandControllers.controller('RegisterCtrl', ['$rootScope', '$scope', '$state', '$http', '$cookies',
-    function($rootScope, $scope, $state, $http, $cookies) {
-        $('.ui.form.register').form({
+    };
+}
+
+RegisterCtrl.$inject = ['$rootScope', '$scope', '$state', '$cookies', 'AuthService'];
+function RegisterCtrl($rootScope, $scope, $state, $cookies, AuthService) {
+    $('.ui.form.register').form({
             fields: {
                 name: {
                     identifier: 'name',
@@ -64,31 +58,20 @@ godhandControllers.controller('RegisterCtrl', ['$rootScope', '$scope', '$state',
                 }
             },
             onSuccess: function() {
-                var req = {
-                    method: 'post',
-                    url: $rootScope.server + 'register',
-                    data: $.param({
-                        name: $scope.name,
-                        email: $scope.email,
-                        password: $scope.password
-                    })
-                };
-                $http(req).success(function(data) {
-                    if (data.success) {
-                        // alert('tes');
-                        $rootScope.logged = true;
-                        $rootScope.user = data.user_id;
-                        $cookies.put('user', data.user_id);
-                        $cookies.put('logged', true);
-                        $('.ui.modal.register').modal('hide');
-                        alert("註冊成功！");
-                        $state.go('home', {}, {
-                            reload: true
-                        });
-                        // $state.go('home',{}, {reload:true});
-                    }
-                });
+                AuthService.register($scope.name, $scope.email, $scope.password)
+                    .success(function(data) {
+                        if (data.success) {
+                            $rootScope.logged = true;
+                            $rootScope.user = data.user_id;
+                            $cookies.put('user', data.user_id);
+                            $cookies.put('logged', true);
+                            $('.ui.modal.register').modal('hide');
+                            alert("註冊成功！");
+                            $state.go('home', {}, {
+                                reload: true
+                            });
+                        }
+                    });
             }
         });
-    }
-]);
+}
