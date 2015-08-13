@@ -1,3 +1,6 @@
 /vendor
 .htaccess
 js/*.min.js
+/node_modules
+GodHand.apk
+godhand.zip

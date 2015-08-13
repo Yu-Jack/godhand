@@ -90,7 +90,7 @@ function config($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, $loca
 run.$inject = ['$rootScope', '$state', '$http', '$cookies'];
 
 function run($rootScope, $state, $http, $cookies) {
-    $rootScope.server = "http://yujack.docker:8080/";
+    $rootScope.server = "http://140.118.155.25:6600/";
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $rootScope.user = $cookies.get('user');
