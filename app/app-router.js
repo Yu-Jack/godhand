@@ -103,8 +103,6 @@ function run($rootScope, $state, $http, $cookies) {
                     scrollTop: 0
                 });
             });
-            $('html, body').stop().animate({
-                scrollTop: 0
-            });
+            $('html, body').scrollTop(0);
         });
 }
