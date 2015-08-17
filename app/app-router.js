@@ -87,12 +87,12 @@ function config($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, $loca
         })
         .state('sales',{
             url: "/sales",
-            templateUrl: "app/components/sales/sales.html",
+            templateUrl: "app/components/Sales/sales.html",
             controller: "SalesCtrl"
         })
         .state('sales_detail',{
             url: "/sales_detail/:salesId",
-            templateUrl: "app/components/sales/salesdetail.html",
+            templateUrl: "app/components/Sales/salesdetail.html",
             controller: "SalesDetailCtrl"
         })
         .state('sales_upload',{

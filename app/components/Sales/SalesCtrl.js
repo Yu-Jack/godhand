@@ -22,6 +22,7 @@ function SalesCtrl($rootScope, $scope, SalesService) {
     if ($('.sidebar').hasClass('visible')) {
         $('.left.sidebar').sidebar('toggle');
     }
+    $rootScope.pagetitle = "購物";
 
     SalesService.getSales()
         .success(function(data) {
@@ -39,7 +40,7 @@ function SalesDetailCtrl($rootScope, $scope, SalesService, $stateParams, Profile
     if ($('.sidebar').hasClass('visible')) {
         $('.left.sidebar').sidebar('toggle');
     }
-
+    $rootScope.pagetitle = "商品資訊";
     SalesService.getSalesDetail($stateParams.salesId)
         .success(function(data) {
             data.images.forEach(function(value, index) {

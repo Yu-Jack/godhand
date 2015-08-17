@@ -1,10 +1,11 @@
 angular
     .module('godhand')
-    .controller('GetImgCtrl', GetImgCtrl)
     .controller('MenuCtrl', MenuCtrl)
+    .controller('GetImgCtrl', GetImgCtrl)
     .controller('IndexCtrl', IndexCtrl);
 
 GetImgCtrl.$inject = ['$rootScope', '$scope', 'HomeService', 'LikeService'];
+
 function GetImgCtrl($rootScope, $scope, HomeService, LikeService) {
     if ($('.sidebar').hasClass('visible')) {
         $('.left.sidebar').sidebar('toggle');
@@ -47,14 +48,18 @@ function GetImgCtrl($rootScope, $scope, HomeService, LikeService) {
 }
 
 MenuCtrl.$inject = ['$rootScope', '$scope'];
+
 function MenuCtrl($rootScope, $scope) {
     $scope.menu = function() {
         $('.left.sidebar').sidebar('toggle');
     }
-    $scope.pagetitle = $rootScope.pagetitle;
+    $rootScope.$watch('pagetitle', function() {
+        $scope.pagetitle = $rootScope.pagetitle;
+    });
 }
 
 IndexCtrl.$inject = ['$rootScope', '$scope'];
+
 function IndexCtrl($rootScope, $scope) {
     $('.banner').attr('style', 'height:' + ($(window).height()) + 'px;');
     $('.banner').attr('data-natural-height', $(window).height());
