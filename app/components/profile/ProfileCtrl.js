@@ -2,7 +2,8 @@ angular
     .module('godhand')
     .controller('ProfileCtrl', ProfileCtrl)
     .controller('ImageUploadCtrl', ImageUploadCtrl)
-    .controller('ProfileEditCtrl', ProfileEditCtrl);
+    .controller('ProfileEditCtrl', ProfileEditCtrl)
+    .controller('ProfileSalesCtrl', ProfileSalesCtrl);
 
 ProfileCtrl.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'ProfileService'];
 
@@ -204,4 +205,74 @@ function ProfileEditCtrl($rootScope, $scope, $state, $stateParams, ProfileServic
         }
 
     }
+}
+
+ProfileSalesCtrl.$inject = ['$rootScope', '$scope', 'Upload', '$http', '$state'];
+
+function ProfileSalesCtrl($rootScope, $scope, Upload, $http, $state) {
+    var image = [];
+    $('.ui.form').form({
+        fields: {
+            title: {
+                identifier: 'title',
+                rules: [{
+                    type: 'empty',
+                    prompt: 'Please enter title'
+                }]
+            },
+            money: {
+                identifier: 'money',
+                rules: [{
+                    type: 'empty',
+                    prompt: 'Please enter money'
+                }]
+            },
+            content: {
+                identifier: 'content',
+                rules: [{
+                    type: 'empty',
+                    prompt: 'Please enter your description'
+                }]
+            }
+        },
+        onSuccess: function() {
+            if (typeof $scope.files === 'undefined') {
+                alert('please upload image');
+            } else {
+                async.forEachOf($scope.files, function(value, key, callback) {
+                    var reader = new window.FileReader();
+                    reader.readAsDataURL(value);
+                    reader.onloadend = function() {
+                        base64data = reader.result;
+                        image.push({
+                            data: base64data,
+                            name: value.name
+                        });
+                        return callback();
+                    }
+                }, function() {
+                    var req = {
+                        method: 'post',
+                        url: $rootScope.server + 'sales_upload',
+                        data: $.param({
+                            userId: $rootScope.user,
+                            images: image,
+                            title: $scope.title,
+                            content: $scope.content,
+                            money: $scope.money
+                        })
+                    };
+                    $http(req).success(function(data) {
+                        if (data.success === true) {
+                            $state.go('sales_detail', {
+                                salesId: data.sales_id
+                            }, {
+                                reload: true
+                            });
+                        }
+                    });
+                });
+            }
+        }
+    });
 }

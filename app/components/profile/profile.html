@@ -34,7 +34,12 @@
                 <a ui-sref="following">
                     <i class="user icon"></i> {{ user.following }} following
                 </a>
-                <a ui-sref="image_upload" class="ui button right floated" ng-if="self">上傳作品</a>
+                <br>
+                <br>
+                <a ui-sref="image_upload" class="ui button" ng-if="self">上傳作品</a>
+                <br>
+                <br>
+                <a ui-sref="sales_upload" class="ui button" ng-if="self">上傳商品</a>
             </div>
         </div>
     </div>

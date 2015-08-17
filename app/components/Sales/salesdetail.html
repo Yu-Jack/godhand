@@ -1,0 +1,58 @@
+<style>
+.slick .item {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 500px;
+    z-index: 8 !important;
+}
+.slick-next, .slick-prev{
+    display: none;
+}
+</style>
+<div class="ui centered grid double stackable" style="margin-top:15px;">
+    <div class="eight wide column ">
+        <div class="ui segment">
+            <div class="slick">
+                <div class="item" ng-repeat="image in images" style="width:{{minwidth}}px;background-image:url('{{image.image_url}}');" sales-images></div>
+            </div>
+            <!-- <img ng-src="{{ sales.image_url }}" alt=""> -->
+            <!-- sales Information -->
+            <div class="ui message">
+                <div class="header">
+                    NT$ {{ sales.money}}
+                    <br>
+                    <br> {{ sales.title }}
+                </div>
+                <pre style="word-break:break-word;font-size:15px;line-height:25px;">{{ sales.description }}</pre>
+            </div>
+            <!-- User Comment -->
+            <div class="ui comments">
+                <h3 class="ui dividing header">Comments</h3>
+                <div class="comment" ng-repeat="comment in comments">
+                    <!-- layer 0 comment -->
+                    <a class="avatar" ui-sref="profile({userId:comment.id})">
+                        <img ng-src="{{ comment.avatar }}">
+                    </a>
+                    <div class="content">
+                        <a class="author" ui-sref="profile({userId:comment.id})"> {{ comment.name }}</a>
+                        <div class="metadata">
+                            <span class="date">{{ comment.created_at }}</span>
+                        </div>
+                        <div class="text">
+                            {{ comment.comment }}
+                        </div>
+                    </div>
+                </div>
+                <form class="ui reply form" ng-if="logged">
+                    <div class="field">
+                        <textarea></textarea>
+                    </div>
+                    <div class="ui blue labeled submit icon button" ng-click="Reply(sales.id)">
+                        <i class="icon edit"></i> Add Reply
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

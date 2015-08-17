@@ -1,6 +1,6 @@
 <div class="ui modal login">
     <div class="header">
-        登入　<span style="color:red;font-size:16px;">{{ errorwithlogin }}</span>
+        登入　<span style="color:red;font-size:16px;" ng-if="count>0">{{ errorwithlogin }} {{ count }} 次</span>
     </div>
     <div class="content">
         <form class="ui form" ng-submit="submit()">

@@ -1,0 +1,30 @@
+<form class="ui form" id="image_form">
+    <div class="ui grid double stackable centered" style="margin-top:30px;padding:5px;">
+        <div class="row">
+            <div class="ui red button" ngf-select ng-model="files" ngf-multiple="true" ngf-accept="'image/*'">
+                Upload
+            </div>
+        </div>
+        <div class="four wide column" ng-repeat="file in files">
+            <img ngf-src="file">
+        </div>
+        <div class="row">
+            <div class="twelve wide column">
+                <div class="field">
+                    <label>標題</label>
+                    <input type="text" name="title" ng-model="title" placeholder="Title ... ">
+                </div>
+                <div class="field">
+                    <label>價格</label>
+                    <input type="number" name="money" ng-model="money" placeholder="money ... ">
+                </div>
+                <div class="field">
+                    <label>內容</label>
+                    <textarea name="content" ng-model="content"></textarea>
+                </div>
+                <button class="ui button" type="submit" >Submit</button>
+                <div class="ui error message"></div>
+            </div>
+        </div>
+    </div>
+</form>

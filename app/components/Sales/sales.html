@@ -1,0 +1,35 @@
+<style>
+.image-size {
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.home-card {
+    width: 100% !important;
+    padding: 10px !important;
+}
+</style>
+<div class="ui three column grid doubling stackable">
+    <div ng-repeat="sale in sales" class="column">
+        <div class="ui card home-card link ">
+            <div class="content">
+                <a ui-sref="profile({userId:sale.authId})">
+                    <img class="ui avatar image" ng-src="{{ sale.authavatar }}"> {{ sale.auth }}
+                </a>
+            </div>
+            <div class="image">
+                <a ui-sref="sales_detail({ salesId : sale.id })">
+                    <div style="background-image:url({{ sale.image_url }});" class="image-size"></div>
+                </a>
+            </div>
+            <div class="content">
+                <i class=" comment icon"></i> {{ sale.count_comments }} comments
+                <br>
+            </div>
+            <div class="extra">
+                <i class="fa fa-2x fa-eye icon"></i>{{ sale.count_views }}
+            </div>
+        </div>
+    </div>
+</div>

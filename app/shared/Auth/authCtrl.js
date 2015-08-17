@@ -5,8 +5,8 @@ angular
 
 LoginCtrl.$inject = ['$rootScope', '$scope', '$state', '$cookies', 'AuthService'];
 function LoginCtrl($rootScope, $scope, $state, $cookies, AuthService) {
+    $scope.count = 0;
     $scope.submit = function() {
-
         AuthService.login($scope.email, $scope.password)
             .success(function(data, status, headers, config) {
                 if (data.logged) {
@@ -21,6 +21,7 @@ function LoginCtrl($rootScope, $scope, $state, $cookies, AuthService) {
                     });
                 } else {
                     $scope.errorwithlogin = '帳號密碼錯誤';
+                    $scope.count += 1;
                 }
             }).error(function(data, status, headers, config) {
                 console.log('error');

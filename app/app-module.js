@@ -6,4 +6,4 @@ angular.module('godhand', ['uiGmapgoogle-maps']).config(
         });
     }]
 );
-angular.module('godhand', ["ui.router", "ngCookies", "angular-loading-bar" ,"uiGmapgoogle-maps"]);
+angular.module('godhand', ["ui.router", "ngCookies", "angular-loading-bar" ,"uiGmapgoogle-maps", "ngFileUpload"]);

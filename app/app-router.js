@@ -84,13 +84,28 @@ function config($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, $loca
             url: "/activity_create",
             templateUrl: "app/components/activity/activity_create.html",
             controller: "ActivityCreateCtrl"
+        })
+        .state('sales',{
+            url: "/sales",
+            templateUrl: "app/components/sales/sales.html",
+            controller: "SalesCtrl"
+        })
+        .state('sales_detail',{
+            url: "/sales_detail/:salesId",
+            templateUrl: "app/components/sales/salesdetail.html",
+            controller: "SalesDetailCtrl"
+        })
+        .state('sales_upload',{
+            url: "/sales_upload",
+            templateUrl: "app/components/profile/profile_sales.html",
+            controller: "ProfileSalesCtrl"
         });
 }
 
 run.$inject = ['$rootScope', '$state', '$http', '$cookies'];
 
 function run($rootScope, $state, $http, $cookies) {
-    $rootScope.server = "http://140.118.155.25:6600/";
+    $rootScope.server = "http://yujack.docker:8080/";
     $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
     $rootScope.user = $cookies.get('user');

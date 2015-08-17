@@ -6,6 +6,7 @@
     <a ng-if="logged" class="item" ui-sref="followed" ui-sref-opts="{reload: true}"><i class = "empty star icon" ></i> 被追蹤 </a>
     <a ng-if="logged" class="item" ui-sref="activity" ui-sref-opts="{reload: true}"><i class = "announcement  icon" ></i> 藝文活動 </a>
     <a ng-if="logged" class="item" ui-sref="activity_create" ui-sref-opts="{reload: true}"><i class = "add square icon" ></i> 建立活動 </a>
+    <a ng-if="logged" class="item" ui-sref="sales" ui-sref-opts="{reload: true}"><i class = "add to cart icon" ></i> 購物 </a>
     <a ng-if="!logged" class="item login" ng-click="login()">登入</a>
     <a ng-if="!logged" class="item register" ng-click="register()">註冊</a>
     <a ng-if="logged" class="item" ng-click="logout()">登出</a>
