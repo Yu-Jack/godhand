@@ -20,7 +20,7 @@
             </div>
             <div class="image">
                 <a ui-sref="sales_detail({ salesId : sale.id })">
-                    <div style="background-image:url({{ sale.image_url }});" class="image-size"></div>
+                    <div ng-style="{'background-image':'url({{ sale.image_url }})'}" class="image-size"></div>
                 </a>
             </div>
             <div class="content">

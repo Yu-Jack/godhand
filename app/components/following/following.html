@@ -33,7 +33,7 @@
                     </div>
                     <div class="image">
                         <a ui-sref="image({ imageId : image.id })">
-                            <div style="background-image:url({{ image.image_url }});" class="image-size"></div>
+                            <div ng-style="{'background-image':'url({{ image.image_url }})'}" class="image-size"></div>
                         </a>
                     </div>
                     <div class="content">

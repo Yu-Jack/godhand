@@ -13,14 +13,14 @@
             </div>
             <div class="ui huge  message">
                 <a class="ui red huge tag label">活動內容</a>
-                <pre style="word-break:break-word;line-height:30px;">{{ activity.description }}</pre>
+                <pre style="white-space:pre-wrap;line-height:30px;">{{ activity.description }}</pre>
                 <br>
                 <br>
                 <a class="ui red huge tag label">活動資訊</a>
                 <div class="ui list">
                     <div class="item">開始日期：{{ activity.start_at }}</div>
                     <div class="item">結束日期：{{ activity.end_at }}</div>
-                    <pre class="item" style="word-break:break-word;">活動地點：{{ activity.position }}</pre>
+                    <pre class="item" style="white-space:pre-wrap;">活動地點：{{ activity.position }}</pre>
                     <div class="item">
                         <ui-gmap-google-map center='map.center' zoom='map.zoom'>
                             <ui-gmap-marker coords="marker.coords" idkey="1">

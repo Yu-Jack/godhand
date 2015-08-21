@@ -16,6 +16,13 @@
     color: white;
     background-color: rgba(188,0,0,0.6) !important;
 }
+@-moz-document url-prefix() { 
+  .hot {
+    padding:18px 12px;
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
 .hot:hover{
     color:white;
     background-color: rgba(155,20,20,0.9) !important;
@@ -27,6 +34,14 @@
     color: white;
     background-color: rgba(5,5,188,0.6) !important;
 }
+@-moz-document url-prefix() { 
+  .cool {
+        padding:18px 4px;
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
+
 .cool:hover{
     color:white;
     background-color: rgba(5,5,155,0.9) !important;
@@ -48,7 +63,7 @@
             </div>
             <div class="image">
                 <a ui-sref="image({ imageId : image.id })">
-                    <div style="background-image:url({{ image.imageurl }});" class="image-size"></div>
+                    <div ng-style="{'background-image':'url({{ image.imageurl }})'}" class="image-size"></div>
                 </a>
             </div>
             <div class="content">
