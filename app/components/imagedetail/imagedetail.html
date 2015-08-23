@@ -1,8 +1,34 @@
-<div class="ui grid double stackable" style="margin-top:15px;">
+<style>
+.order {
+    position: fixed;
+    top: 50%;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.order:hover,
+.order:active,
+.order:focus {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.order-left {
+    left: 0%;
+    margin-left: 5px;
+}
+
+.order-right {
+    right: 0%;
+    margin-right: 5px;
+}
+
+.none {
+    display: none !important;
+}
+</style>
+<div class="ui grid double stackable detail none" style="margin-top:15px;">
     <div class="ten wide column centered">
         <div class="ui segment">
             <img ng-src="{{ image.url }}" alt="">
-
             <!-- Image Information -->
             <div class="ui message">
                 <div class="header">
@@ -10,11 +36,9 @@
                 </div>
                 <pre style="white-space:pre-wrap;font-size:15px;line-height:25px;">{{ image.content }}</pre>
             </div>
-
             <!-- User Comment -->
             <div class="ui comments">
                 <h3 class="ui dividing header">Comments</h3>
-
                 <div class="comment" ng-repeat="comment in comments">
                     <!-- layer 0 comment -->
                     <a class="avatar" ui-sref="profile({userId:comment.id})">
@@ -30,8 +54,7 @@
                         </div>
                     </div>
                 </div>
-
-                <form class="ui reply form"  ng-if="logged">
+                <form class="ui reply form" ng-if="logged">
                     <div class="field">
                         <textarea></textarea>
                     </div>
@@ -42,5 +65,6 @@
             </div>
         </div>
     </div>
-
 </div>
+<a ng-if="(order.current-1) != order.min && noorder==false" ui-sref="image({ imageId: order.left_value })" class="order order-left"><i class="fa fa-5x fa-angle-left"></i></a>
+<a ng-if="order.current != order.max && noorder==false" ui-sref="image({ imageId: order.right_value })" class="order order-right"><i class="fa fa-5x fa-angle-right"></i></a>

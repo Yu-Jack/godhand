@@ -5,15 +5,16 @@ angular
     .controller('ProfileEditCtrl', ProfileEditCtrl)
     .controller('ProfileSalesCtrl', ProfileSalesCtrl);
 
-ProfileCtrl.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'ProfileService'];
+ProfileCtrl.$inject = ['$rootScope', '$scope', '$state', '$stateParams', 'ProfileService', '$cookies'];
 
-function ProfileCtrl($rootScope, $scope, $state, $stateParams, ProfileService) {
+function ProfileCtrl($rootScope, $scope, $state, $stateParams, ProfileService, $cookies) {
     if ($('.sidebar').hasClass('visible')) {
         $('.left.sidebar').sidebar('toggle');
     }
 
     $scope.logged = $rootScope.logged;
     $scope.images = [];
+    $rootScope.order = [];
 
     ProfileService.getProfile($stateParams.userId)
         .success(function(data) {
@@ -41,11 +42,13 @@ function ProfileCtrl($rootScope, $scope, $state, $stateParams, ProfileService) {
             }
 
             $scope.user = data.user;
-
+            var order = [];
             data.user.image.forEach(function(value, index) {
                 value.image_url = $rootScope.server + value.image_url;
+                order.push(value.id);
                 $scope.images.push(value);
             });
+            $cookies.put('order', order);
         });
 
     $scope.Follow = function(id) {

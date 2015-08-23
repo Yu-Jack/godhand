@@ -32,6 +32,7 @@ function config($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, $loca
         })
         .state('home', {
             url: "/home",
+            cache: false,
             templateUrl: "app/components/home/home.html",
             controller: "GetImgCtrl"
         })

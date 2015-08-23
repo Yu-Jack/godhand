@@ -3,41 +3,45 @@ angular
     .service('HomeService', HomeService)
     .service('LikeService', LikeService);
 
-HomeService.$inject = ['$rootScope', '$http'];
-function HomeService($rootScope, $http) {
-    var self = this;
-    var request = {
-        method: 'post',
-        url: $rootScope.server + 'image',
-        data: $.param({
-            user_id: $rootScope.user
-        })
-    };
-    var result = [];
-    $http(request).success(function(data) {
-        data.images.forEach(function(value, index) {
-            result.push({
-                id: value.id,
-                authId: value.authId,
-                imageurl: $rootScope.server + value.image_url,
-                auth: value.auth,
-                authavatar: $rootScope.server + value.authavatar,
-                comments: value.count_comments,
-                views: parseInt(value.count_views),
-                favorite: value.count_favorite,
-                isLiked: value.isLiked
-            });
-        });
-    });
+HomeService.$inject = ['$rootScope', '$http', '$cookies'];
 
+function HomeService($rootScope, $http, $cookies) {
+    var self = this;
     self.getData = function() {
+        var request = {
+            method: 'post',
+            url: $rootScope.server + 'image',
+            data: $.param({
+                user_id: $rootScope.user
+            })
+        };
+        var result = [];
+        $http(request).success(function(data) {
+            var order = [];
+            data.images.forEach(function(value, index) {
+                order.push(value.id);
+                result.push({
+                    id: value.id,
+                    authId: value.authId,
+                    imageurl: $rootScope.server + value.image_url,
+                    auth: value.auth,
+                    authavatar: $rootScope.server + value.authavatar,
+                    comments: value.count_comments,
+                    views: parseInt(value.count_views),
+                    favorite: value.count_favorite,
+                    isLiked: value.isLiked
+                });
+            });
+            $cookies.put('order', order);
+        });
         return result;
     }
 }
 
 LikeService.$inject = ['$rootScope', '$http'];
+
 function LikeService($rootScope, $http) {
-	var self = this;
+    var self = this;
     self.like = function(id) {
         var req = {
             method: 'post',

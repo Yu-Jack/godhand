@@ -20,6 +20,7 @@ function SideBarCtrl($rootScope, $scope, $state, $cookies) {
         $rootScope.user = 0;
         $cookies.remove('user');
         $cookies.remove('logged');
+        $cookies.remove('order');
         alert("登出成功！");
         $state.go('home', {}, {
             reload: true
